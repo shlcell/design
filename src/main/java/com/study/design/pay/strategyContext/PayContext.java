@@ -7,6 +7,7 @@ import com.study.design.pay.pojo.PayBody;
 //PayContext 就是我们的被装饰者，因为我们想给payContext添加额外功能：平台币更新和红包
 // 所以我们选择使用装饰者模式。被装饰者必须要有 接口或者抽象类。也就是类图中的
 public class PayContext extends AbstractPayContext{
+
     private PayStrategy payStrategy;
 
     public PayContext(PayStrategy payStrategy) {

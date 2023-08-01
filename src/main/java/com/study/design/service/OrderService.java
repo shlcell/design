@@ -33,7 +33,7 @@ public class OrderService {
     private OrderLogProcessor orderLogProcessor;
 
     //模拟一个存储
-    private List<Object> orders = new ArrayList<>();
+    private final List<Object> orders = new ArrayList<>();
 
     public Order createOrder(Integer oid) {
         Order order = new Order();
@@ -41,7 +41,7 @@ public class OrderService {
         order.setOrderId(oid);
         // 创建的order是不是得入库啊？如果不入库，下次访问的时候，是不是找不到了啊。
         orders.add(order); // 模拟存储到 db
-        orderLogProcessor.processAuditLog("acccount", "createOrder", oid.toString());
+        orderLogProcessor.processAuditLog("account", "createOrder", oid.toString());
         return order;
     }
 
@@ -50,12 +50,12 @@ public class OrderService {
     // 调用层使用我们的pay 模块，无需关系实现的逻辑，只需要将入参传给我们的pay模块即可。
     public Order pay(PayBody payBody) {
         // 书写我们的付款逻辑
-        boolean flag = false;
+        boolean flag;
         flag = StrategyFacade.pay(payBody);
         if(flag) {
             Order order = (Order) orders.get(0); // 模拟查询db代码
             payLogProcessor.processAuditLog(payBody.getAccount(), "pay", order.getOrderId().toString());
-            Message message = MessageBuilder
+            Message<OrderStateChangeAction> message = MessageBuilder
                     .withPayload(OrderStateChangeAction.PAY_ORDER).setHeader("order", order).build();
             //发送消息，发送给谁？和状态机有没有关系啊？ 有
             if(changeStateAction(message,order)) {
@@ -66,12 +66,13 @@ public class OrderService {
         }
         return null;
     }
+
     private void saveToDb(PayBody payBody) {
     }
 
     public Order send(Integer oid) {
         Order order = (Order) orders.get(0); // 模拟查询db代码
-        Message message = MessageBuilder
+        Message<OrderStateChangeAction> message = MessageBuilder
                 .withPayload(OrderStateChangeAction.SEND_ORDER).setHeader("order", order).build();
         if(changeStateAction(message,order)) {
             return order;
@@ -81,7 +82,7 @@ public class OrderService {
 
     public Order receive(Integer oid) {
         Order order = (Order) orders.get(0); // 模拟查询db代码
-        Message message = MessageBuilder
+        Message<OrderStateChangeAction> message = MessageBuilder
                 .withPayload(OrderStateChangeAction.RECEIVE_ORDER).setHeader("order", order).build();
         if(changeStateAction(message,order)) {
             return order;

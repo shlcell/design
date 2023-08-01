@@ -8,6 +8,7 @@ import com.study.design.pay.pojo.PayBody;
 
 // 扩展性良好，而且不影响 调用端。我们的任何改动，不需要让调用端知道。
 public interface PayStrategy {
+
     Boolean pay(PayBody payBody);
     // 之所以使用interface,是因为我们的所有的策略接口下的方法都是需要复写的，
     // 没有公共的、可重用的方法。

@@ -2,6 +2,7 @@ package com.study.design.pay.facade;
 
 import com.study.design.pay.additionalDecorator.AddFuncDecorator;
 import com.study.design.pay.factory.AddFuncFactory;
+import com.study.design.pay.factory.PayContextFactory;
 import com.study.design.pay.pojo.PayBody;
 import com.study.design.pay.strategy.PayStrategy;
 import com.study.design.pay.strategyContext.PayContext;
@@ -31,7 +32,8 @@ public class StrategyFacade {
         //获取我们的策略对象
         PayStrategy payStrategy = StrategyFactory.getPayStrategy(strategyEnum);
         //生成我们的策略上下文
-        PayContext context = new PayContext(payStrategy); // TO DO
+        // TODO 享元模式创建对象，避免new 频繁创建对象导致垃圾回收 PayContext context = new PayContext(payStrategy);
+        PayContext context = (PayContext) PayContextFactory.getPayContext(payStrategy);
         // 装饰一下 context，。立马多了一个功能
         // 我看这行代码啊，就不顺眼。代理模式搞他。
         AddFuncDecorator addFuncDecorator = (AddFuncDecorator) AddFuncFactory.getAddFunc(context);
