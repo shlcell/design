@@ -4,6 +4,7 @@ import com.study.design.auditlog.pojo.AuditLog;
 
 import java.util.Date;
 
+// 模板模式：审计日志
 public abstract class AbstractAuditLogProcessor {
     // 创建我们的 AuditLog (基础部分）
     public final AuditLog buildAuditLog(String account, String action, String orderId){

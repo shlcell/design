@@ -9,6 +9,8 @@ import com.study.design.pay.strategyContext.PayContext;
 import com.study.design.pay.strategyEnum.StrategyEnum;
 import com.study.design.pay.factory.StrategyFactory;
 
+// 门面模式：支付案例
+
 // 最终我们只暴露我们的门面，对于里边的这些所有的工厂。策略啊。策略枚举啊，统统不暴露。
 // 门面就是我们的超强封装。
 public class StrategyFacade {
@@ -26,7 +28,7 @@ public class StrategyFacade {
     public static Boolean pay(PayBody payBody) {
         //获取我们的 策略枚举
         StrategyEnum strategyEnum = getStrategyEnum(payBody.getType());
-        if(strategyEnum == null) {
+        if (strategyEnum == null) {
             return false;
         }
         //获取我们的策略对象

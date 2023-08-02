@@ -8,6 +8,7 @@ import org.springframework.statemachine.annotation.OnTransition;
 import org.springframework.statemachine.annotation.WithStateMachine;
 import org.springframework.stereotype.Component;
 
+// 状态模式+观察者模式
 // 监听器是监听到 action 后进行状态的一个变更。
 @Component("orderStateListener")
 @WithStateMachine(name="orderStateMachine")

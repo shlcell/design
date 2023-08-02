@@ -55,8 +55,7 @@ public class OrderService {
         if(flag) {
             Order order = (Order) orders.get(0); // 模拟查询db代码
             payLogProcessor.processAuditLog(payBody.getAccount(), "pay", order.getOrderId().toString());
-            Message<OrderStateChangeAction> message = MessageBuilder
-                    .withPayload(OrderStateChangeAction.PAY_ORDER).setHeader("order", order).build();
+            Message<OrderStateChangeAction> message = MessageBuilder.withPayload(OrderStateChangeAction.PAY_ORDER).setHeader("order", order).build();
             //发送消息，发送给谁？和状态机有没有关系啊？ 有
             if(changeStateAction(message,order)) {
                 return order;

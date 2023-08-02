@@ -1,7 +1,8 @@
 package com.study.design.pojo;
 
 public class TicketParam {
-    private String account; // 真实的项目里，我们的account是set到用户的请求头里的 ，header里。过我们的网管的时候就已经记录了
+    // 真实的项目里，我们的account是set到用户的请求头里的 ，header里。过我们的网关的时候就已经记录了
+    private String account;
     private String title;
     private String bankInfo;
     private String productId;

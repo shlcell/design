@@ -3,6 +3,7 @@ package com.study.design.pay.additionalDecorator;
 import com.study.design.pay.pojo.PayBody;
 import com.study.design.pay.strategyContext.AbstractPayContext;
 
+// 装饰模式：平台积分更新和红包发放
 public abstract class AbstractAddFuncDecorator extends AbstractPayContext {
 
     // 这是我们的装饰器类。专门干装修的。 专门添加新功能的（平台币，红包）

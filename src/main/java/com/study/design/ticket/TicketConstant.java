@@ -3,6 +3,7 @@ package com.study.design.ticket;
 import com.study.design.ticket.pojo.CompanyTicket;
 import com.study.design.ticket.pojo.PersonalTicket;
 
+// 原型模式：克隆
 public class TicketConstant {
     // 保存只具有公共属性的对象，供clone使用。
     public static PersonalTicket personalTicket = new PersonalTicket();
