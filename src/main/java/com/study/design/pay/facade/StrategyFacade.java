@@ -36,8 +36,10 @@ public class StrategyFacade {
         PayContext context = (PayContext) PayContextFactory.getPayContext(payStrategy);
         // 装饰一下 context，。立马多了一个功能
         // 我看这行代码啊，就不顺眼。代理模式搞他。
+        // TODO 装饰模式复习
         AddFuncDecorator addFuncDecorator = (AddFuncDecorator) AddFuncFactory.getAddFunc(context);
         //进行扣款
+        // 装饰模式前 return context.execute(payBody);
         return addFuncDecorator.execute(payBody);
     }
 

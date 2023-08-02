@@ -7,6 +7,7 @@ import com.study.design.pay.strategyContext.PayContext;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+// 享元模式
 public class PayContextFactory {
 
     public final static Map<PayStrategy, AbstractPayContext> maps = new ConcurrentHashMap<>();
