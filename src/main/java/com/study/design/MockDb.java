@@ -1,7 +1,5 @@
 package com.study.design;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.design.items.node.ProductItem;
 
 import java.util.ArrayList;

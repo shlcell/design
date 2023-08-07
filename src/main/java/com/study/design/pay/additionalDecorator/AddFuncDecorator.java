@@ -3,6 +3,7 @@ package com.study.design.pay.additionalDecorator;
 import com.study.design.pay.pojo.PayBody;
 import com.study.design.pay.strategyContext.AbstractPayContext;
 
+// 装饰模式
 // abstractPayContext 不是共享的，因为有的小伙伴选择 zfb 支付，有的小伙伴选择wx支付，等等。。。
 public class AddFuncDecorator extends AbstractAddFuncDecorator{
     public AddFuncDecorator(AbstractPayContext abstractPayContext) {

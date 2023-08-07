@@ -61,11 +61,11 @@ public class UserService {
 
         // 这部分我就不进行封装了，直接在 service里做了。小伙伴可以自行实现封装，类似享元。
         // 这部分是桥接模式的实现。
-//        if(type.equals("wb")) {
-//            LoginFunc func = new WbLoginFunc();
-//            AbstractLoginProcessor processor = new ThirdPartLogin(func);
-//            return processor.loginExecute(name, pwd, type);
-//        }
+        if(type.equals("wb")) {
+            LoginFunc func = new WbLoginFunc();
+            AbstractLoginProcessor processor = new ThirdPartLogin(func);
+            return processor.loginExecute(name, pwd, type);
+        }
 
         return true;
     }
